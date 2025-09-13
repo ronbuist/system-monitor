@@ -1,0 +1,30 @@
+[Unit]
+Description=Raspberry Pi System Monitor with MQTT
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/system-monitor
+ExecStart=/usr/bin/python3 /home/pi/system-monitor/system_monitor.py
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pi-system-monitor
+
+# Environment variables (if needed)
+Environment=PYTHONUNBUFFERED=1
+
+# Security settings
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/pi/system-monitor
+
+[Install]
+WantedBy=multi-user.target
