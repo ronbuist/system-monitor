@@ -1,0 +1,13 @@
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  username: your_username
+  password: your_password
+monitor:
+  update_interval: 20
+  home_assistant_discovery: true
+  fan_monitoring:
+    enabled: true
+    gpio_pin: 14
+logging:
+  level: ERROR
